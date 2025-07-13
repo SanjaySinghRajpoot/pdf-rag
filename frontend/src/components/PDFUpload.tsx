@@ -44,7 +44,8 @@ export function PDFUpload({ onUploadSuccess }: PDFUploadProps) {
       const formData = new FormData();
       formData.append('file', selectedFile);
 
-      const response = await fetch('http://localhost:8000/api/v1/ingest', {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiBaseUrl}/api/v1/ingest`, {
         method: 'POST',
         body: formData,
       });
