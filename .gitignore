@@ -4,4 +4,4 @@ venv
 .env
 data
 /db
-
+node_modules
