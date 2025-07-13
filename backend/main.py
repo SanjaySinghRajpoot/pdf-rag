@@ -5,16 +5,15 @@ import logging
 import uvicorn
 
 from app.routes.routes import api_router
-from db_interaction import DatabaseManager
+from app.services.db_interaction import DatabaseManager
 
-# Configure logging
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-# Create FastAPI app
 app = FastAPI(
     title="Mini-RAG Service",
     description="A minimal RAG (Retrieval-Augmented Generation) service for document ingestion and semantic search",
@@ -23,16 +22,15 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure appropriately for production
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Include API routes
+
 app.include_router(api_router, prefix="/api/v1")
 
 # Root endpoint
