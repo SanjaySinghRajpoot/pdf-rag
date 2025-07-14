@@ -9,6 +9,7 @@ load_dotenv()
 class EmbeddingService:
     def __init__(self):
         try:
+            # Using Gemini APIs
             self.client = OpenAI(
                 api_key=os.getenv("OPENAI_API_KEY"),
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
